@@ -5,7 +5,7 @@ import repast.simphony.space.grid.Grid;
 
 public class Place extends Agent {
 
-	public Place(ContinuousSpace pos, Grid<Agent> grid, int capacity, int time) {
+	public Place(ContinuousSpace<Object> pos, Grid<Agent> grid, int capacity, int time) {
 		super(pos, grid);
 		this.time = time;
 		this.capacity = capacity;

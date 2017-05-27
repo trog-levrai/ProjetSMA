@@ -12,7 +12,7 @@ import repast.simphony.util.ContextUtils;
 
 public abstract class Agent {
 
-	public Agent(ContinuousSpace pos, Grid<Agent> grid) {
+	public Agent(ContinuousSpace<Object> pos, Grid<Agent> grid) {
 		this.pos = pos;
 		this.grid = grid;
 	}
@@ -20,10 +20,10 @@ public abstract class Agent {
 	@ScheduledMethod(start = 1, interval = 1)
 	public abstract void step();
 
-	public ContinuousSpace getPos() {
+	public ContinuousSpace<Object> getPos() {
 		return this.pos;
 	}
 	
-	protected ContinuousSpace pos;
+	protected ContinuousSpace<Object> pos;
 	protected Grid<Agent> grid;
 }

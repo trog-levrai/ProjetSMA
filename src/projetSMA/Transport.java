@@ -5,7 +5,7 @@ import repast.simphony.space.grid.Grid;
 
 public class Transport extends Agent {
 
-	public Transport(ContinuousSpace pos, Grid<Agent> grid, int speed, int capacity) {
+	public Transport(ContinuousSpace<Object> pos, Grid<Agent> grid, int speed, int capacity) {
 		super(pos, grid);
 		this.speed = speed;
 		this.capacity = capacity;

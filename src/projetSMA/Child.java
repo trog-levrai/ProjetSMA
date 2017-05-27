@@ -5,7 +5,7 @@ import repast.simphony.space.grid.Grid;
 
 public class Child extends Human {
 
-	public Child(ContinuousSpace pos, Grid<Agent> grid, Place job, Adult parent) {
+	public Child(ContinuousSpace<Object> pos, Grid<Agent> grid, Place job, Adult parent) {
 		super(pos, grid, job);
 		this.parent = parent;
 		// TODO Auto-generated constructor stub

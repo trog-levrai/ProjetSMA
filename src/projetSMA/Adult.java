@@ -5,7 +5,7 @@ import repast.simphony.space.grid.Grid;
 
 public class Adult extends Human {
 
-	public Adult(ContinuousSpace pos, Grid<Agent> grid, Place job) {
+	public Adult(ContinuousSpace<Object> pos, Grid<Agent> grid, Place job) {
 		super(pos, grid, job);
 		// TODO Auto-generated constructor stub
 	}
