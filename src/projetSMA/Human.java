@@ -13,6 +13,7 @@ public class Human extends Agent {
 	@Override
 	public void step() {
 		// TODO Auto-generated method stub
+		pos.moveByDisplacement(this, Math.random(), Math.random());
 
 	}
 	
