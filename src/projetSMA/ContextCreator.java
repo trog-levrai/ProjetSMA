@@ -18,10 +18,10 @@ public class ContextCreator implements ContextBuilder<Agent> {
 	@Override
 	public Context<Agent> build(Context<Agent> context) {
 		context.setId("ProjetSMA");
-		int width = RunEnvironment.getInstance().getParameters().getInteger("gridWidth");
-		int height = RunEnvironment.getInstance().getParameters().getInteger("gridHeight");
+		//int width = RunEnvironment.getInstance().getParameters().getInteger("gridWidth");
+		//int height = RunEnvironment.getInstance().getParameters().getInteger("gridHeight");
 		GridFactory gridFactory = GridFactoryFinder.createGridFactory(null);
-		GridBuilderParameters<Agent> gbp = new GridBuilderParameters<Agent>(new WrapAroundBorders(), new SimpleGridAdder<Agent>(), false, width, height);
+		GridBuilderParameters<Agent> gbp = new GridBuilderParameters<Agent>(new WrapAroundBorders(), new SimpleGridAdder<Agent>(), false, 100, 100);
 		Grid<Agent> grid = gridFactory.createGrid("grid", context, gbp);
 		
 		return context;
