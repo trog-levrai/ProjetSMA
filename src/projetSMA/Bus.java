@@ -7,7 +7,7 @@ import repast.simphony.space.grid.Grid;
 
 public class Bus extends Transport {
 
-	public Bus(ContinuousSpace<Object> pos, Grid<Agent> grid, int speed, int capacity, List<ContinuousSpace<Object>> stops) {
+	public Bus(ContinuousSpace<Object> pos, Grid<Object> grid, int speed, int capacity, List<ContinuousSpace<Object>> stops) {
 		super(pos, grid, speed, capacity);
 		this.stops = stops;
 		// TODO Auto-generated constructor stub

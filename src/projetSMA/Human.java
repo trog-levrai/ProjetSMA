@@ -5,7 +5,7 @@ import repast.simphony.space.grid.Grid;
 
 public class Human extends Agent {
 	
-	public Human(ContinuousSpace<Object> pos, Grid<Agent> grid, Place job) {
+	public Human(ContinuousSpace<Object> pos, Grid<Object> grid, Place job) {
 		super(pos, grid);
 		this.job = job;
 	}
