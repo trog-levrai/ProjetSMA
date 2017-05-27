@@ -1,6 +1,11 @@
-package projetSMA;
+package projetSMA; 
 
+import bsh.Console;
+import repast.simphony.engine.watcher.Watch;
+import repast.simphony.engine.watcher.WatcherTriggerSchedule;
+import repast.simphony.space.SpatialMath;
 import repast.simphony.space.continuous.ContinuousSpace;
+import repast.simphony.space.continuous.NdPoint;
 import repast.simphony.space.grid.Grid;
 
 public class Human extends Agent {
@@ -12,9 +17,12 @@ public class Human extends Agent {
 
 	@Override
 	public void step() {
-		// TODO Auto-generated method stub
-		pos.moveByDisplacement(this, Math.random(), Math.random());
-
+		NdPoint myPoint  = pos.getLocation(this);
+		NdPoint otherPoint = new NdPoint(25, 25);
+		double angle = SpatialMath.calcAngleFor2DMovement(pos, myPoint, otherPoint);
+		pos.moveByVector(this, 2, angle, 0);
+		myPoint = pos.getLocation(this);
+		grid.moveTo(this, (int)myPoint.getX(), (int)myPoint.getY());
 	}
 	
 	public Place getJob() {
@@ -22,4 +30,5 @@ public class Human extends Agent {
 	}
 	
 	protected Place job;
+	protected int a = 1;
 }

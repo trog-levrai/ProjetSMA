@@ -24,8 +24,10 @@ public class ContextCreator implements ContextBuilder<Object> {
 	@Override
 	public Context<Object> build(Context<Object> context) {
 		context.setId("ProjetSMA");
-		//int width = RunEnvironment.getInstance().getParameters().getInteger("gridWidth");
-		//int height = RunEnvironment.getInstance().getParameters().getInteger("gridHeight");
+
+		NetworkBuilder<Object> netBuilder = new NetworkBuilder<Object>("SMA network", context, true);
+		netBuilder.buildNetwork();
+
 		GridFactory gridFactory = GridFactoryFinder.createGridFactory(null);
 		GridBuilderParameters<Object> gbp = new GridBuilderParameters<Object>(new WrapAroundBorders(), new SimpleGridAdder<Object>(), false, 50, 50);
 		Grid<Object> grid = gridFactory.createGrid("grid", context, gbp);
