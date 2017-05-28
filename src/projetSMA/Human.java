@@ -14,16 +14,28 @@ public class Human extends Agent {
 		super(pos, grid);
 		this.job = job;
 		this.house = house;
+		this.destination = house;
 	}
 
 	@Override
 	public void step() {
 		NdPoint myPoint  = pos.getLocation(this);
-		NdPoint otherPoint = this.pos.getLocation(this.house);
+		NdPoint otherPoint = this.pos.getLocation(this.destination);
 		double angle = SpatialMath.calcAngleFor2DMovement(pos, myPoint, otherPoint);
 		pos.moveByVector(this, 2, angle, 0);
 		myPoint = pos.getLocation(this);
 		grid.moveTo(this, (int)myPoint.getX(), (int)myPoint.getY());
+		if (this.pos.getDistance(myPoint, otherPoint) <= 1.5) {
+			changeDist();
+		}
+	}
+	
+	private void changeDist() {
+		if (this.destination == this.house) {
+			this.destination = this.job;
+		} else {
+			this.destination = this.house;
+		}
 	}
 	
 	public Place getJob() {
@@ -34,6 +46,7 @@ public class Human extends Agent {
 		return this.house;
 	}
 	
+	protected Place destination;
 	protected Place job;
 	protected int a = 1;
 	protected House house;

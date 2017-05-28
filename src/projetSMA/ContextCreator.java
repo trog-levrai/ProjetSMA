@@ -41,7 +41,9 @@ public class ContextCreator implements ContextBuilder<Object> {
 		for(int i = 0; i < 100; i++) {
 			House house = new House(space, grid, 1, 1);
 			context.add(house);
-			context.add(new Human(space, grid, new Place(space, grid, 10, 10), house));	
+			Office job = new Office(space, grid, 1, 1);
+			context.add(job);
+			context.add(new Human(space, grid, job, house));	
 		}
 		
 		for (Object obj : context)
