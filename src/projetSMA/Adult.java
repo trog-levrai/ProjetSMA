@@ -1,12 +1,15 @@
 package projetSMA;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import repast.simphony.space.continuous.ContinuousSpace;
 import repast.simphony.space.grid.Grid;
 
 public class Adult extends Human {
 
-	public Adult(ContinuousSpace<Object> pos, Grid<Object> grid, Place job, House house) {
-		super(pos, grid, job, house);
+	public Adult(ContinuousSpace<Object> pos, Grid<Object> grid, Place job, House house, List<ArrayList<Place>> buses) {
+		super(pos, grid, job, house, buses);
 		// TODO Auto-generated constructor stub
 	}
 	
