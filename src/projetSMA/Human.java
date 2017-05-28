@@ -48,6 +48,50 @@ public class Human extends Agent {
 		checkDestination(myPoint, otherPoint);
 	}
 	
+	private void calc_best_course() {
+		need_to_take_bus = false;
+		NdPoint myPoint  = pos.getLocation(this);
+		NdPoint otherPoint = this.pos.getLocation(this.destination);
+		double dist_walk = this.pos.getDistance(myPoint, otherPoint);
+		
+		double min_dist_station = Double.MAX_VALUE;
+
+		int i = 0, j = 0;
+		for (; i < buses.size(); i++)
+			for (; j < buses.get(i).size(); j++) {
+				NdPoint station = this.pos.getLocation(buses.get(i).get(j));
+				double dist_to_station = this.pos.getDistance(myPoint, station);
+				if (dist_to_station < min_dist_station) {
+					min_dist_station = dist_to_station;
+					this.nearest_station = buses.get(i).get(j);
+				}
+			}
+		
+		if (min_dist_station > dist_walk)
+			return;
+
+		min_dist_station = Double.MAX_VALUE;
+		for (; j < buses.get(i).size(); j++) {
+			NdPoint station = this.pos.getLocation(buses.get(i).get(j));
+			double dist_to_station = this.pos.getDistance(station, otherPoint);
+			if (dist_to_station < min_dist_station) {
+				min_dist_station = dist_to_station;
+				this.arrival_station = buses.get(i).get(j);
+			}
+		}
+		
+		NdPoint nearest_station_point = this.pos.getLocation(nearest_station);
+		NdPoint arrival_station_point = this.pos.getLocation(arrival_station);
+		
+		// Sum all station + account for modulus
+		double bus_course_dists = 0;
+		List<Place> best_course;
+		
+		double dist_sum = this.pos.getDistance(myPoint, nearest_station_point) +
+						  bus_course_dists +
+						  this.pos.getDistance(arrival_station_point, otherPoint);
+	}
+	
 	private void changeDist() {
 		if (this.destination == this.house) {
 			this.destination = this.job;
@@ -72,6 +116,9 @@ public class Human extends Agent {
 		return this.house;
 	}
 	
+	protected boolean need_to_take_bus = false;
+	protected Place nearest_station;
+	protected Place arrival_station;
 	protected Place destination;
 	protected Place job;
 	protected House house;
