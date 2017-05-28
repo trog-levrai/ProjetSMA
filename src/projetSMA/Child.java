@@ -19,10 +19,4 @@ public class Child extends Human {
 	}
 
 	private Adult parent;
-
-	@Override
-	public void step() {
-		// TODO Auto-generated method stub
-		
-	}
 }

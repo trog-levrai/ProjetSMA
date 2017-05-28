@@ -61,8 +61,8 @@ public class Human extends Agent {
 		if (!(this.pos.getDistance(myPoint, otherPoint) <= 1.0))
 			return;
 		this.isAtDestination = true;
+		this.pos = destination.pos;
 		this.timeInDestination = destination.time;
-		//grid.moveTo(this, (int)(this.pos.getLocation(destination)).getX(), (int)(this.pos.getLocation(destination)).getY());
 	}
 	
 	public Place getJob() {
