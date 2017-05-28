@@ -42,10 +42,11 @@ public class Human extends Agent {
 		NdPoint myPoint  = pos.getLocation(this);
 		NdPoint otherPoint = this.pos.getLocation(this.destination);
 		double angle = SpatialMath.calcAngleFor2DMovement(pos, myPoint, otherPoint);
-		pos.moveByVector(this, 2, angle, 0);
+		pos.moveByVector(this, 0.5, angle, 0);
 		myPoint = pos.getLocation(this);
 		grid.moveTo(this, (int)myPoint.getX(), (int)myPoint.getY());
-		checkDestination(myPoint, otherPoint);
+
+		checkDestination();
 	}
 	
 	private void changeDist() {
@@ -56,12 +57,16 @@ public class Human extends Agent {
 		}
 	}
 	
-	private void checkDestination(NdPoint myPoint, NdPoint otherPoint) {
-		if (!(this.pos.getDistance(myPoint, otherPoint) <= 1.0))
+	private void checkDestination() {
+		NdPoint myPoint  = pos.getLocation(this);
+		NdPoint otherPoint = this.pos.getLocation(this.destination);
+		double dist = this.pos.getDistance(myPoint, otherPoint);
+		if (!(dist <= 0.6))
 			return;
 		this.isAtDestination = true;
-		this.pos = destination.pos;
 		this.timeInDestination = destination.time;
+		double angle = SpatialMath.calcAngleFor2DMovement(pos, myPoint, otherPoint);
+		pos.moveByVector(this, dist, angle, 0);
 	}
 	
 	public Place getJob() {
@@ -77,6 +82,5 @@ public class Human extends Agent {
 	protected House house;
 	protected boolean isAtDestination;
 	protected int timeInDestination;
-	Grid<Object> grid;
 	
 }

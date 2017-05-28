@@ -1,5 +1,5 @@
 <repast.simphony.visualization.engine.CartesianDisplayDescriptor>
-  <name>New Display</name>
+  <name>Space  Display</name>
   <type>2D</type>
   <styles>
     <entry>
@@ -7,19 +7,19 @@
       <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
     <entry>
-      <string>projetSMA.Human</string>
-      <string>repast.simphony.visualizationOGL2D.DefaultStyleOGL2D</string>
+      <string>projetSMA.Adult</string>
+      <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
     <entry>
       <string>projetSMA.House</string>
       <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
     <entry>
-      <string>projetSMA.Child</string>
+      <string>projetSMA.School</string>
       <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
     <entry>
-      <string>projetSMA.School</string>
+      <string>projetSMA.Child</string>
       <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
     <entry>
@@ -30,27 +30,27 @@
   <editedStyles>
     <entry>
       <string>projetSMA.Bus</string>
-      <string>projetSMA.Bus.style_4.xml</string>
+      <string>projetSMA.Bus.style_7.xml</string>
     </entry>
     <entry>
-      <string>projetSMA.Human</string>
-      <null/>
+      <string>projetSMA.Adult</string>
+      <string>projetSMA.Adult.style_0.xml</string>
     </entry>
     <entry>
       <string>projetSMA.House</string>
-      <string>projetSMA.House.style_8.xml</string>
-    </entry>
-    <entry>
-      <string>projetSMA.Child</string>
-      <string>projetSMA.Child.style_0.xml</string>
+      <string>projetSMA.House.style_9.xml</string>
     </entry>
     <entry>
       <string>projetSMA.School</string>
-      <string>projetSMA.School.style_1.xml</string>
+      <string>projetSMA.School.style_2.xml</string>
+    </entry>
+    <entry>
+      <string>projetSMA.Child</string>
+      <string>projetSMA.Child.style_1.xml</string>
     </entry>
     <entry>
       <string>projetSMA.Office</string>
-      <string>projetSMA.Office.style_2.xml</string>
+      <string>projetSMA.Office.style_3.xml</string>
     </entry>
   </editedStyles>
   <netStyles/>
@@ -63,18 +63,18 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>-331741188</hashCode>
+    <hashCode>1766824675</hashCode>
   </schedParams>
   <layoutClassName>foo.bar.baz</layoutClassName>
-  <layoutProjection>grid</layoutProjection>
+  <layoutProjection>space</layoutProjection>
   <layoutInterval>0</layoutInterval>
   <layerOrder>
     <entry>
       <string>projetSMA.Bus</string>
-      <int>3</int>
+      <int>0</int>
     </entry>
     <entry>
-      <string>projetSMA.Human</string>
+      <string>projetSMA.Adult</string>
       <int>2</int>
     </entry>
     <entry>
@@ -82,23 +82,23 @@
       <int>4</int>
     </entry>
     <entry>
+      <string>projetSMA.School</string>
+      <int>5</int>
+    </entry>
+    <entry>
       <string>projetSMA.Child</string>
       <int>1</int>
     </entry>
     <entry>
-      <string>projetSMA.School</string>
-      <int>0</int>
-    </entry>
-    <entry>
       <string>projetSMA.Office</string>
-      <int>5</int>
+      <int>3</int>
     </entry>
   </layerOrder>
   <projections>
     <repast.simphony.scenario.data.ProjectionData>
-      <id>grid</id>
+      <id>space</id>
       <attributes/>
-      <type>grid</type>
+      <type>continuous space</type>
     </repast.simphony.scenario.data.ProjectionData>
   </projections>
   <visualizationProperties class="repast.simphony.visualization.UnitSizeLayoutProperties">
@@ -106,12 +106,12 @@
   </visualizationProperties>
   <projectionDescriptors>
     <entry>
-      <string>grid</string>
-      <repast.simphony.visualization.grid.GridProjectionDescriptor>
+      <string>space</string>
+      <repast.simphony.visualization.continuous.ContinuousProjectionDescriptor>
         <proj reference="../../../../projections/repast.simphony.scenario.data.ProjectionData"/>
         <props>
           <entry>
-            <string>repast.simphony.visualization.grid.GridDecorator</string>
+            <string>repast.simphony.visualization.continuous.ContinuousDecorator</string>
             <map>
               <entry>
                 <string>COLOR</string>
@@ -123,12 +123,12 @@
               </entry>
               <entry>
                 <string>SHOW</string>
-                <boolean>false</boolean>
+                <boolean>true</boolean>
               </entry>
             </map>
           </entry>
         </props>
-      </repast.simphony.visualization.grid.GridProjectionDescriptor>
+      </repast.simphony.visualization.continuous.ContinuousProjectionDescriptor>
     </entry>
   </projectionDescriptors>
   <props/>
