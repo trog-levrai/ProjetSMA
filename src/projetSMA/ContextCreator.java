@@ -38,8 +38,11 @@ public class ContextCreator implements ContextBuilder<Object> {
 				new RandomCartesianAdder<Object>(),
 				new repast.simphony.space.continuous.WrapAroundBorders(), 50, 50);
 
-		for(int i = 0; i < 100; i++) 
-			context.add(new Human(space, grid, new Place(space, grid, 10, 10)));
+		for(int i = 0; i < 100; i++) {
+			House house = new House(space, grid, 1, 1);
+			context.add(house);
+			context.add(new Human(space, grid, new Place(space, grid, 10, 10), house));	
+		}
 		
 		for (Object obj : context)
 		{

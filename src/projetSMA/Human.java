@@ -10,9 +10,10 @@ import repast.simphony.space.grid.Grid;
 
 public class Human extends Agent {
 	
-	public Human(ContinuousSpace<Object> pos, Grid<Object> grid, Place job) {
+	public Human(ContinuousSpace<Object> pos, Grid<Object> grid, Place job, House house) {
 		super(pos, grid);
 		this.job = job;
+		this.house = house;
 	}
 
 	@Override
@@ -29,6 +30,11 @@ public class Human extends Agent {
 		return job;
 	}
 	
+	public House getHouse() {
+		return this.house;
+	}
+	
 	protected Place job;
 	protected int a = 1;
+	protected House house;
 }
