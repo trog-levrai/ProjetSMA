@@ -45,7 +45,6 @@ public class Human extends Agent {
 		pos.moveByVector(this, 2, angle, 0);
 		myPoint = pos.getLocation(this);
 		grid.moveTo(this, (int)myPoint.getX(), (int)myPoint.getY());
-
 		checkDestination(myPoint, otherPoint);
 	}
 	
