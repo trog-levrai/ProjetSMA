@@ -46,7 +46,7 @@ public class ContextCreator implements ContextBuilder<Object> {
 		
 		ContinuousSpace<Object> space = spaceFactory.createContinuousSpace("space", context,
 				new RandomCartesianAdder<Object>(),
-				new repast.simphony.space.continuous.WrapAroundBorders(), x, y);
+				new repast.simphony.space.continuous.StrictBorders(), x, y);
 
 		List<ArrayList<Place>> stations_per_lines = new ArrayList<ArrayList<Place>>();
 		int nb_stations = 10;

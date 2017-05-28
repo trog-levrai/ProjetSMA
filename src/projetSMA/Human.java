@@ -25,6 +25,7 @@ public class Human extends Agent {
 		this.isAtDestination = false;
 		this.timeInDestination = 0;
 		this.buses = stations_per_lines;
+		this.grid = grid;
 	}
 
 	@Override
@@ -77,5 +78,6 @@ public class Human extends Agent {
 	protected House house;
 	protected boolean isAtDestination;
 	protected int timeInDestination;
+	Grid<Object> grid;
 	
 }
