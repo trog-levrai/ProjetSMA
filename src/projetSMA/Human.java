@@ -19,7 +19,7 @@ public class Human extends Agent {
 	@Override
 	public void step() {
 		NdPoint myPoint  = pos.getLocation(this);
-		NdPoint otherPoint = new NdPoint(25, 25);
+		NdPoint otherPoint = this.pos.getLocation(this.house);
 		double angle = SpatialMath.calcAngleFor2DMovement(pos, myPoint, otherPoint);
 		pos.moveByVector(this, 2, angle, 0);
 		myPoint = pos.getLocation(this);
