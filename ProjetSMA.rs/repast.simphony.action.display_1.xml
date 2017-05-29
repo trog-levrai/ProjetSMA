@@ -15,6 +15,14 @@
       <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
     <entry>
+      <string>projetSMA.Child</string>
+      <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
+    </entry>
+    <entry>
+      <string>projetSMA.School</string>
+      <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
+    </entry>
+    <entry>
       <string>projetSMA.Office</string>
       <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
@@ -33,6 +41,14 @@
       <string>projetSMA.House.style_8.xml</string>
     </entry>
     <entry>
+      <string>projetSMA.Child</string>
+      <string>projetSMA.Child.style_0.xml</string>
+    </entry>
+    <entry>
+      <string>projetSMA.School</string>
+      <string>projetSMA.School.style_1.xml</string>
+    </entry>
+    <entry>
       <string>projetSMA.Office</string>
       <string>projetSMA.Office.style_2.xml</string>
     </entry>
@@ -47,7 +63,7 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>1976459544</hashCode>
+    <hashCode>-331741188</hashCode>
   </schedParams>
   <layoutClassName>foo.bar.baz</layoutClassName>
   <layoutProjection>grid</layoutProjection>
@@ -55,19 +71,27 @@
   <layerOrder>
     <entry>
       <string>projetSMA.Bus</string>
-      <int>1</int>
+      <int>3</int>
     </entry>
     <entry>
       <string>projetSMA.Human</string>
-      <int>0</int>
-    </entry>
-    <entry>
-      <string>projetSMA.House</string>
       <int>2</int>
     </entry>
     <entry>
+      <string>projetSMA.House</string>
+      <int>4</int>
+    </entry>
+    <entry>
+      <string>projetSMA.Child</string>
+      <int>1</int>
+    </entry>
+    <entry>
+      <string>projetSMA.School</string>
+      <int>0</int>
+    </entry>
+    <entry>
       <string>projetSMA.Office</string>
-      <int>3</int>
+      <int>5</int>
     </entry>
   </layerOrder>
   <projections>

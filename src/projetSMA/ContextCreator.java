@@ -64,13 +64,17 @@ public class ContextCreator implements ContextBuilder<Object> {
 			Bus bus = new Bus(space, grid, 4, 1, stations_per_lines.get(i));
 			context.add(bus);
 		}
-		
+		School school = new School(space, grid, 1000, 25);
+		context.add(school);
 		for(int i = 0; i < 10; i++) {
 			House house = new House(space, grid, 1, 25);
 			context.add(house);
 			Office job = new Office(space, grid, 1, 15);
 			context.add(job);
-			context.add(new Human(space, grid, job, house, stations_per_lines));	
+			Adult a = new Adult(space, grid, job, house, stations_per_lines);
+			Child c = new Child(space, grid, school, a, house, stations_per_lines);
+			context.add(a);	
+			context.add(c);
 		}
 		
 		for (Object obj : context)
