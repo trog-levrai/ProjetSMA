@@ -27,6 +27,7 @@ import repast.simphony.space.grid.WrapAroundBorders;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Stream;
 
 public class ContextCreator implements ContextBuilder<Object> {
@@ -41,6 +42,25 @@ public class ContextCreator implements ContextBuilder<Object> {
 			stream.forEach(s -> {
 				this.x = s.length();
 				this.y++;
+				for (int i = 0; i < s.length(); i++) {
+					switch (s.charAt(i)) {
+						case 'H':
+							this.house++;
+							break;
+						case 'O':
+							this.office++;
+							break;
+						case 'S':
+							this.school++;
+							break;
+						case 'B':
+							this.bus++;
+							break;
+						case 'P':
+							this.park++;
+							break;
+					}
+				}
 			});
 			stream.close();
 		} catch (Exception e) {
@@ -64,7 +84,7 @@ public class ContextCreator implements ContextBuilder<Object> {
 				new repast.simphony.space.continuous.StrictBorders(), this.x, this.y);
 
 		List<ArrayList<Place>> stations_per_lines = new ArrayList<ArrayList<Place>>();
-		int nb_stations = 10;
+		int nb_stations = this.bus;
 		int nb_lines = 1;
 		for (int j = 0; j < nb_lines; j++) {
 			stations_per_lines.add(new ArrayList<Place>());
@@ -80,15 +100,23 @@ public class ContextCreator implements ContextBuilder<Object> {
 			context.add(bus);
 		}
 		
-		School school = new School(space, grid, 1000, 100);
-		context.add(school);
-		for(int i = 0; i < 10; i++) {
+		List<School> s = new ArrayList<School>();
+		for (int i = 0; i < this.school; ++i)
+			s.add(new School(space, grid, 1000, 100));getClass();
+		
+		List<Office> o = new ArrayList<Office>();
+		for (int i = 0; i < this.office; ++i)
+			o.add(new Office(space, grid, 1000, 100));
+		
+		o.forEach(off -> context.add(off));
+		s.forEach(sch -> context.add(sch));
+		
+		Random rand = new Random();
+		for(int i = 0; i < this.house; i++) {
 			House house = new House(space, grid, 1, 25);
 			context.add(house);
-			Office job = new Office(space, grid, 1, 15);
-			context.add(job);
-			Adult adult = new Adult(space, grid, job, house, stations_per_lines);
-			Child child = new Child(space, grid, school, adult, house, stations_per_lines);
+			Adult adult = new Adult(space, grid, o.get(rand.nextInt(o.size())), house, stations_per_lines);
+			Child child = new Child(space, grid, s.get(rand.nextInt(s.size())), adult, house, stations_per_lines);
 			context.add(adult);
 			context.add(child);
 		}
@@ -103,4 +131,9 @@ public class ContextCreator implements ContextBuilder<Object> {
 	}
 	public int x = 0;
 	public int y = 0;
+	public int house = 0;
+	public int office = 0;
+	public int school = 0;
+	public int park = 0;
+	public int bus = 0;
 }
