@@ -28,6 +28,9 @@ public class Human extends Agent {
 		this.bus_list = bus_list;
 		this.best_course = new ArrayList<Place>();
 		this.nearest_station = job;
+		this.time = 0;
+		this.day = 0;
+		
 	}
 
 	@Override
@@ -80,6 +83,13 @@ public class Human extends Agent {
 		}
 
 		checkDestination(myPoint, otherPoint);
+	}
+	
+	private void update_time() {
+		time++;
+		if (time > 200) {
+			
+		}
 	}
 	
 	private void calc_best_course() {
@@ -179,8 +189,10 @@ public class Human extends Agent {
 		if (!(this.pos.getDistance(myPoint, otherPoint) <= 1.0))
 			return;
 		this.isAtDestination = true;
-		this.pos = destination.pos;
 		this.timeInDestination = destination.time;
+		double dist = this.pos.getDistance(myPoint, otherPoint);
+		double angle = SpatialMath.calcAngleFor2DMovement(pos, myPoint, otherPoint);
+		pos.moveByVector(this, dist, angle, 0);
 	}
 	
 	public Place getJob() {
@@ -206,4 +218,6 @@ public class Human extends Agent {
 	protected int timeInDestination;
 	protected List<ArrayList<Place>> stations_list;
 	protected List<Bus> bus_list;
+	protected int time;
+	protected int day;
 }
