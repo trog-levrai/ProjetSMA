@@ -17,7 +17,7 @@ public class Bus extends Transport {
 	
 	@Override
 	public void step() {
-		/*NdPoint myPoint  = pos.getLocation(this);
+		NdPoint myPoint  = pos.getLocation(this);
 		NdPoint otherPoint = this.pos.getLocation(this.curr_dest);
 
 		if (curr_stand_by == 0)
@@ -30,7 +30,6 @@ public class Bus extends Transport {
 		
 		if (this.pos.getDistance(myPoint, otherPoint) <= 1.0 && curr_stand_by++ != stand_by)
 			changeDist();
-		*/
 	}
 
 	private void changeDist() {

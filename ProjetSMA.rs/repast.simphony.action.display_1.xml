@@ -26,6 +26,10 @@
       <string>projetSMA.Office</string>
       <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
+    <entry>
+      <string>projetSMA.Place</string>
+      <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
+    </entry>
   </styles>
   <editedStyles>
     <entry>
@@ -52,6 +56,10 @@
       <string>projetSMA.Office</string>
       <string>projetSMA.Office.style_3.xml</string>
     </entry>
+    <entry>
+      <string>projetSMA.Place</string>
+      <string>projetSMA.Place.style_1.xml</string>
+    </entry>
   </editedStyles>
   <netStyles/>
   <editedNetStyles/>
@@ -63,7 +71,7 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>1766824675</hashCode>
+    <hashCode>716289382</hashCode>
   </schedParams>
   <layoutClassName>foo.bar.baz</layoutClassName>
   <layoutProjection>space</layoutProjection>
@@ -79,11 +87,11 @@
     </entry>
     <entry>
       <string>projetSMA.House</string>
-      <int>4</int>
+      <int>5</int>
     </entry>
     <entry>
       <string>projetSMA.School</string>
-      <int>5</int>
+      <int>6</int>
     </entry>
     <entry>
       <string>projetSMA.Child</string>
@@ -91,6 +99,10 @@
     </entry>
     <entry>
       <string>projetSMA.Office</string>
+      <int>4</int>
+    </entry>
+    <entry>
+      <string>projetSMA.Place</string>
       <int>3</int>
     </entry>
   </layerOrder>

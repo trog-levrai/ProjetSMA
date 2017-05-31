@@ -96,11 +96,13 @@ public class ContextCreator implements ContextBuilder<Object> {
 			}
 		}
 
-		for (int i = 0; i < 1; i++) {
-			Bus bus = new Bus(space, grid, 4, 1, stations_per_lines.get(i));
+		List<Bus> buses = new ArrayList<Bus>();
+		for (int i = 0; i < 2; i++) {
+			Bus bus = new Bus(space, grid, 4, 1, stations_per_lines.get(0));
+			buses.add(bus);
 			context.add(bus);
 		}
-		
+
 		List<School> s = new ArrayList<School>();
 		List<Office> o = new ArrayList<Office>();
 		List<House> h = new ArrayList<House>();
@@ -120,8 +122,8 @@ public class ContextCreator implements ContextBuilder<Object> {
 		
 		Random rand = new Random();
 		for(int i = 0; i < this.house; i++) {
-			Adult adult = new Adult(space, grid, o.get(rand.nextInt(o.size())), h.get(i), stations_per_lines);
-			Child child = new Child(space, grid, s.get(rand.nextInt(s.size())), adult, h.get(i), stations_per_lines);
+			Adult adult = new Adult(space, grid, o.get(rand.nextInt(o.size())), h.get(i), stations_per_lines, buses);
+			Child child = new Child(space, grid, s.get(rand.nextInt(s.size())), adult, h.get(i), stations_per_lines, buses);
 			context.add(adult);
 			context.add(child);
 		}
