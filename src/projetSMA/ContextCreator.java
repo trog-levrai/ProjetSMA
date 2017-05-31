@@ -84,6 +84,8 @@ public class ContextCreator implements ContextBuilder<Object> {
 				new RandomCartesianAdder<Object>(),
 				new repast.simphony.space.continuous.StrictBorders(), this.x, this.y);
 
+		TimeLine timeLine = new TimeLine(space, grid, 100);
+		context.add(timeLine);
 		List<ArrayList<Place>> stations_per_lines = new ArrayList<ArrayList<Place>>();
 		int nb_stations = this.bus;
 		int nb_lines = 1;
@@ -109,16 +111,16 @@ public class ContextCreator implements ContextBuilder<Object> {
 		List<Park> p = new ArrayList<Park>();
 		
 		for (int i = 0; i < this.school; ++i)
-			s.add(new School(space, grid, 1000, 100));
+			s.add(new School(space, grid, 1000, 50));
 		
 		for (int i = 0; i < this.office; ++i)
-			o.add(new Office(space, grid, 1000, 100));
+			o.add(new Office(space, grid, 1000, 50));
 		
 		for (int i = 0; i < this.house; ++i)
-			h.add(new House(space, grid, 1, 25));
+			h.add(new House(space, grid, 1, 50));
 		
 		for (int i = 0; i < this.park; ++i)
-			p.add(new Park(space, grid, 1, 2500));
+			p.add(new Park(space, grid, 1, 50));
 
 		o.forEach(off -> context.add(off));
 		s.forEach(sch -> context.add(sch));
@@ -127,8 +129,8 @@ public class ContextCreator implements ContextBuilder<Object> {
 		
 		Random rand = new Random();
 		for(int i = 0; i < this.house; i++) {
-			Adult adult = new Adult(space, grid, o.get(rand.nextInt(o.size())), h.get(i), stations_per_lines, buses);
-			Child child = new Child(space, grid, s.get(rand.nextInt(s.size())), adult, h.get(i), stations_per_lines, buses);
+			Adult adult = new Adult(space, grid, o.get(rand.nextInt(o.size())), h.get(i), stations_per_lines, buses, timeLine);
+			Child child = new Child(space, grid, s.get(rand.nextInt(s.size())), adult, h.get(i), stations_per_lines, buses, timeLine);
 			context.add(adult);
 			context.add(child);
 		}

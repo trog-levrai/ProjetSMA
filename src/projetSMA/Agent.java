@@ -15,6 +15,7 @@ public abstract class Agent {
 	public Agent(ContinuousSpace<Object> pos, Grid<Object> grid) {
 		this.pos = pos;
 		this.grid = grid;
+		this.time = 0;
 	}
 
 	@ScheduledMethod(start = 1, interval = 1)
@@ -26,4 +27,5 @@ public abstract class Agent {
 	
 	protected ContinuousSpace<Object> pos;
 	protected Grid<Object> grid;
+	protected int time;
 }

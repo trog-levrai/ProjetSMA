@@ -16,7 +16,7 @@ import repast.simphony.space.grid.GridPoint;
 
 public class Human extends Agent {
 	
-	public Human(ContinuousSpace<Object> pos, Grid<Object> grid, Place job, House house, List<ArrayList<Place>> stations_per_lines, List<Bus> bus_list) {
+	public Human(ContinuousSpace<Object> pos, Grid<Object> grid, Place job, House house, List<ArrayList<Place>> stations_per_lines, List<Bus> bus_list, TimeLine timeLine) {
 		super(pos, grid);
 		this.job = job;
 		this.house = house;
@@ -30,11 +30,18 @@ public class Human extends Agent {
 		this.nearest_station = job;
 		this.time = 0;
 		this.day = 0;
+		this.timeLine = timeLine;
 		
 	}
 
 	@Override
 	public void step() {
+		if (isAtDestination) {
+			timeInDestination--;
+			if (timeInDestination == 0)
+				isAtDestination = false;
+			return;
+		}
 		NdPoint myPoint  = pos.getLocation(this);
 		NdPoint otherPoint = this.pos.getLocation(this.destination);
 		NdPoint finalPoint = this.pos.getLocation(this.final_destination);
@@ -83,13 +90,6 @@ public class Human extends Agent {
 		}
 
 		checkDestination(myPoint, otherPoint);
-	}
-	
-	private void update_time() {
-		time++;
-		if (time > 200) {
-			
-		}
 	}
 	
 	private void calc_best_course() {
@@ -176,13 +176,9 @@ public class Human extends Agent {
 	}
 	
 	private void changeDist() {
-		if (this.destination == this.house) {
-			this.destination = this.job;
-			this.final_destination = this.job;
-		} else {
-			this.destination = this.house;
-			this.final_destination = this.house;
-		}
+		Place dist = timeLine.getDestination(this);
+		this.destination = dist;
+		this.final_destination = dist;
 	}
 
 	private void checkDestination(NdPoint myPoint, NdPoint otherPoint) {
@@ -220,4 +216,5 @@ public class Human extends Agent {
 	protected List<Bus> bus_list;
 	protected int time;
 	protected int day;
+	protected TimeLine timeLine;
 }
