@@ -49,7 +49,7 @@ public class ContextCreator implements ContextBuilder<Object> {
 				new repast.simphony.space.continuous.StrictBorders(), x, y);
 
 		List<ArrayList<Place>> stations_per_lines = new ArrayList<ArrayList<Place>>();
-		int nb_stations = 10;
+		int nb_stations = 5;
 		int nb_lines = 1;
 		for (int j = 0; j < nb_lines; j++) {
 			stations_per_lines.add(new ArrayList<Place>());
@@ -60,8 +60,10 @@ public class ContextCreator implements ContextBuilder<Object> {
 			}
 		}
 
-		for (int i = 0; i < 1; i++) {
-			Bus bus = new Bus(space, grid, 4, 1, stations_per_lines.get(i));
+		List<Bus> buses = new ArrayList<Bus>();
+		for (int i = 0; i < 2; i++) {
+			Bus bus = new Bus(space, grid, 4, 1, stations_per_lines.get(0));
+			buses.add(bus);
 			context.add(bus);
 		}
 		
@@ -72,8 +74,8 @@ public class ContextCreator implements ContextBuilder<Object> {
 			context.add(house);
 			Office job = new Office(space, grid, 1, 15);
 			context.add(job);
-			Adult adult = new Adult(space, grid, job, house, stations_per_lines);
-			Child child = new Child(space, grid, school, adult, house, stations_per_lines);
+			Adult adult = new Adult(space, grid, job, house, stations_per_lines, buses);
+			Child child = new Child(space, grid, school, adult, house, stations_per_lines, buses);
 			context.add(adult);
 			context.add(child);
 		}
