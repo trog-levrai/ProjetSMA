@@ -36,14 +36,15 @@ public class ContextCreator implements ContextBuilder<Object> {
 	public Context<Object> build(Context<Object> context) {
 		context.setId("ProjetSMA");
 		int nb = 100;
-		
+		String path = "tests/bar.sma";
+
 		try {
-			Stream<String> stream = Files.lines(Paths.get("tests/foo.sma"));
-			stream.forEach(s -> {
-				this.x = s.length();
+			Stream<String> stream = Files.lines(Paths.get(path));
+			stream.forEach(str -> {
+				this.x = str.length();
 				this.y++;
-				for (int i = 0; i < s.length(); i++) {
-					switch (s.charAt(i)) {
+				for (int i = 0; i < str.length(); i++) {
+					switch (str.charAt(i)) {
 						case 'H':
 							this.house++;
 							break;
@@ -101,30 +102,64 @@ public class ContextCreator implements ContextBuilder<Object> {
 		}
 		
 		List<School> s = new ArrayList<School>();
-		for (int i = 0; i < this.school; ++i)
-			s.add(new School(space, grid, 1000, 100));getClass();
-		
 		List<Office> o = new ArrayList<Office>();
+		List<House> h = new ArrayList<House>();
+		
+		for (int i = 0; i < this.school; ++i)
+			s.add(new School(space, grid, 1000, 100));
+		
 		for (int i = 0; i < this.office; ++i)
 			o.add(new Office(space, grid, 1000, 100));
 		
+		for (int i = 0; i < this.house; ++i)
+			h.add(new House(space, grid, 1, 25));
+
 		o.forEach(off -> context.add(off));
 		s.forEach(sch -> context.add(sch));
+		h.forEach(hou -> context.add(hou));
 		
 		Random rand = new Random();
 		for(int i = 0; i < this.house; i++) {
-			House house = new House(space, grid, 1, 25);
-			context.add(house);
-			Adult adult = new Adult(space, grid, o.get(rand.nextInt(o.size())), house, stations_per_lines);
-			Child child = new Child(space, grid, s.get(rand.nextInt(s.size())), adult, house, stations_per_lines);
+			Adult adult = new Adult(space, grid, o.get(rand.nextInt(o.size())), h.get(i), stations_per_lines);
+			Child child = new Child(space, grid, s.get(rand.nextInt(s.size())), adult, h.get(i), stations_per_lines);
 			context.add(adult);
 			context.add(child);
 		}
 		
-		for (Object obj : context)
-		{
-			NdPoint pt = space.getLocation(obj);
-			grid.moveTo(obj, (int)pt.getX(), (int)pt.getY());
+		try {
+			Stream<String> stream = Files.lines(Paths.get(path));
+			stream.forEach(str -> {
+				for (int i = 0; i < str.length(); i++) {
+					switch (str.charAt(i)) {
+						case 'H':
+							this.house--;
+							space.moveTo(h.get(this.house), i, this.aux);
+							break;
+						case 'O':
+							this.office--;
+							space.moveTo(o.get(this.office), i, this.aux);
+							break;
+						case 'S':
+							this.school--;
+							space.moveTo(s.get(this.school), i, this.aux);
+							break;
+						case 'B':
+							this.bus--;
+							space.moveTo(stations_per_lines.get(0).get(this.bus), i, this.aux);
+							break;
+						case 'P':
+							this.park--;
+							break;
+					}
+				}
+				aux++;
+			});
+			stream.close();
+		} catch (Exception e) {
+			this.x = 50;
+			this.y = 50;
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		return context;
@@ -136,4 +171,5 @@ public class ContextCreator implements ContextBuilder<Object> {
 	public int school = 0;
 	public int park = 0;
 	public int bus = 0;
+	public int aux = 0;
 }
