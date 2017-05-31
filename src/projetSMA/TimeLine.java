@@ -17,7 +17,6 @@ public class TimeLine extends Agent{
 
 	@Override
 	public void step() {
-		System.out.println(time);
 		time++;
 		if (time > ticPerDay)
 			time = 0;

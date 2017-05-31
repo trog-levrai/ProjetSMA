@@ -17,6 +17,10 @@ public class Place extends Agent {
 		// TODO Auto-generated method stub
 
 	}
+	
+	public String getName() {
+		return "Place";
+	}
 
 	public int getTime() {
 		return this.time;

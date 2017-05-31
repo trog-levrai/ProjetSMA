@@ -9,5 +9,10 @@ public class School extends Place {
 		super(pos, grid, capacity, time);
 		// TODO Auto-generated constructor stub
 	}
+	
+	@Override
+	public String getName() {
+		return "School";
+	}
 
 }

@@ -25,6 +25,10 @@ public abstract class Agent {
 		return this.pos;
 	}
 	
+	public String getName() {
+		return "Agent";
+	}
+	
 	protected ContinuousSpace<Object> pos;
 	protected Grid<Object> grid;
 	protected int time;

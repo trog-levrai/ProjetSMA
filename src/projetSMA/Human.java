@@ -31,6 +31,7 @@ public class Human extends Agent {
 		this.time = 0;
 		this.day = 0;
 		this.timeLine = timeLine;
+		this.activity = "Starting";
 		
 	}
 
@@ -177,6 +178,7 @@ public class Human extends Agent {
 	
 	private void changeDist() {
 		Place dist = timeLine.getDestination(this);
+		this.activity = "Going to " + dist.getName();
 		this.destination = dist;
 		this.final_destination = dist;
 	}
@@ -198,6 +200,11 @@ public class Human extends Agent {
 	public House getHouse() {
 		return this.house;
 	}
+	
+	@Override
+	public String getName() {
+		return this.activity;
+	}
 
 	protected Place final_destination;
 	protected boolean need_to_take_bus = false;
@@ -217,4 +224,5 @@ public class Human extends Agent {
 	protected int time;
 	protected int day;
 	protected TimeLine timeLine;
+	protected String activity;
 }
