@@ -31,6 +31,7 @@ public class Human extends Agent {
 		this.time = 0;
 		this.day = 0;
 		this.timeLine = timeLine;
+		this.destination = this.house;
 		
 	}
 
@@ -177,6 +178,7 @@ public class Human extends Agent {
 	
 	private void changeDist() {
 		Place dist = timeLine.getDestination(this);
+		this.isInPlace = null;
 		this.destination = dist;
 		this.final_destination = dist;
 	}
@@ -186,6 +188,7 @@ public class Human extends Agent {
 			return;
 		this.isAtDestination = true;
 		this.timeInDestination = destination.time;
+		this.isInPlace = destination;
 		double dist = this.pos.getDistance(myPoint, otherPoint);
 		double angle = SpatialMath.calcAngleFor2DMovement(pos, myPoint, otherPoint);
 		pos.moveByVector(this, dist, angle, 0);
@@ -217,4 +220,5 @@ public class Human extends Agent {
 	protected int time;
 	protected int day;
 	protected TimeLine timeLine;
+	protected Place isInPlace;
 }

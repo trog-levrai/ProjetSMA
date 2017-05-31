@@ -109,6 +109,8 @@ public class ContextCreator implements ContextBuilder<Object> {
 		List<Office> o = new ArrayList<Office>();
 		List<House> h = new ArrayList<House>();
 		List<Park> p = new ArrayList<Park>();
+		List<Adult> a = new ArrayList<Adult>();
+		List<Child> c = new ArrayList<Child>();
 		
 		for (int i = 0; i < this.school; ++i)
 			s.add(new School(space, grid, 1000, 70));
@@ -133,6 +135,8 @@ public class ContextCreator implements ContextBuilder<Object> {
 			Child child = new Child(space, grid, s.get(rand.nextInt(s.size())), adult, h.get(i), stations_per_lines, buses, timeLine);
 			context.add(adult);
 			context.add(child);
+			a.add(adult);
+			c.add(child);
 		}
 		
 		try {
@@ -143,6 +147,8 @@ public class ContextCreator implements ContextBuilder<Object> {
 						case 'H':
 							this.house--;
 							space.moveTo(h.get(this.house), i, this.aux);
+							space.moveTo(a.get(this.house), i, this.aux);
+							space.moveTo(c.get(this.house), i, this.aux);
 							break;
 						case 'O':
 							this.office--;
