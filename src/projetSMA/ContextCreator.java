@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import repast.simphony.context.Context;
 import repast.simphony.context.space.continuous.ContinuousSpaceFactory;
@@ -25,28 +27,41 @@ import repast.simphony.space.grid.WrapAroundBorders;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class ContextCreator implements ContextBuilder<Object> {
 	
 	@Override
 	public Context<Object> build(Context<Object> context) {
 		context.setId("ProjetSMA");
-		int x = 50;
-		int y = 50;
 		int nb = 100;
+		
+		try {
+			Stream<String> stream = Files.lines(Paths.get("tests/foo.sma"));
+			stream.forEach(s -> {
+				this.x = s.length();
+				this.y++;
+			});
+			stream.close();
+		} catch (Exception e) {
+			this.x = 50;
+			this.y = 50;
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 		
 		NetworkBuilder<Object> netBuilder = new NetworkBuilder<Object>("SMA network", context, true);
 		netBuilder.buildNetwork();
 
 		GridFactory gridFactory = GridFactoryFinder.createGridFactory(null);
-		GridBuilderParameters<Object> gbp = new GridBuilderParameters<Object>(new WrapAroundBorders(), new SimpleGridAdder<Object>(), false, x, y);
+		GridBuilderParameters<Object> gbp = new GridBuilderParameters<Object>(new WrapAroundBorders(), new SimpleGridAdder<Object>(), false, this.x, this.y);
 		Grid<Object> grid = gridFactory.createGrid("grid", context, gbp);
 		
 		ContinuousSpaceFactory spaceFactory = ContinuousSpaceFactoryFinder.createContinuousSpaceFactory(null);
 		
 		ContinuousSpace<Object> space = spaceFactory.createContinuousSpace("space", context,
 				new RandomCartesianAdder<Object>(),
-				new repast.simphony.space.continuous.StrictBorders(), x, y);
+				new repast.simphony.space.continuous.StrictBorders(), this.x, this.y);
 
 		List<ArrayList<Place>> stations_per_lines = new ArrayList<ArrayList<Place>>();
 		int nb_stations = 10;
@@ -86,4 +101,6 @@ public class ContextCreator implements ContextBuilder<Object> {
 		
 		return context;
 	}
+	public int x = 0;
+	public int y = 0;
 }
