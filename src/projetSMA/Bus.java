@@ -28,7 +28,7 @@ public class Bus extends Transport {
 			grid.moveTo(this, (int)myPoint.getX(), (int)myPoint.getY());
 		}
 		
-		if (this.pos.getDistance(myPoint, otherPoint) <= 1.0 && curr_stand_by++ != stand_by)
+		if (this.pos.getDistance(myPoint, otherPoint) <= 1.0 && curr_stand_by++ == stand_by)
 			changeDist();
 	}
 
@@ -46,6 +46,6 @@ public class Bus extends Transport {
 	private List<Place> stops;
 	private int curr_idx = 0;
 	private Place curr_dest;
-	private int stand_by = 4;
+	private int stand_by = 10;
 	private int curr_stand_by = 0;
 }
