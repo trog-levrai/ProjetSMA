@@ -106,6 +106,7 @@ public class ContextCreator implements ContextBuilder<Object> {
 		List<School> s = new ArrayList<School>();
 		List<Office> o = new ArrayList<Office>();
 		List<House> h = new ArrayList<House>();
+		List<Park> p = new ArrayList<Park>();
 		
 		for (int i = 0; i < this.school; ++i)
 			s.add(new School(space, grid, 1000, 100));
@@ -115,10 +116,14 @@ public class ContextCreator implements ContextBuilder<Object> {
 		
 		for (int i = 0; i < this.house; ++i)
 			h.add(new House(space, grid, 1, 25));
+		
+		for (int i = 0; i < this.park; ++i)
+			p.add(new Park(space, grid, 1, 2500));
 
 		o.forEach(off -> context.add(off));
 		s.forEach(sch -> context.add(sch));
 		h.forEach(hou -> context.add(hou));
+		p.forEach(par -> context.add(par));
 		
 		Random rand = new Random();
 		for(int i = 0; i < this.house; i++) {
@@ -151,6 +156,7 @@ public class ContextCreator implements ContextBuilder<Object> {
 							break;
 						case 'P':
 							this.park--;
+							space.moveTo(p.get(this.park), i, this.aux);
 							break;
 					}
 				}

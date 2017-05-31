@@ -27,6 +27,10 @@
       <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
     <entry>
+      <string>projetSMA.Park</string>
+      <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
+    </entry>
+    <entry>
       <string>projetSMA.Place</string>
       <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
@@ -57,6 +61,10 @@
       <string>projetSMA.Office.style_3.xml</string>
     </entry>
     <entry>
+      <string>projetSMA.Park</string>
+      <string>projetSMA.Park.style_1.xml</string>
+    </entry>
+    <entry>
       <string>projetSMA.Place</string>
       <string>projetSMA.Place.style_1.xml</string>
     </entry>
@@ -71,7 +79,7 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>716289382</hashCode>
+    <hashCode>-346609086</hashCode>
   </schedParams>
   <layoutClassName>foo.bar.baz</layoutClassName>
   <layoutProjection>space</layoutProjection>
@@ -79,31 +87,35 @@
   <layerOrder>
     <entry>
       <string>projetSMA.Bus</string>
-      <int>0</int>
-    </entry>
-    <entry>
-      <string>projetSMA.Adult</string>
-      <int>2</int>
-    </entry>
-    <entry>
-      <string>projetSMA.House</string>
-      <int>5</int>
-    </entry>
-    <entry>
-      <string>projetSMA.School</string>
-      <int>6</int>
-    </entry>
-    <entry>
-      <string>projetSMA.Child</string>
       <int>1</int>
     </entry>
     <entry>
+      <string>projetSMA.Adult</string>
+      <int>3</int>
+    </entry>
+    <entry>
+      <string>projetSMA.House</string>
+      <int>6</int>
+    </entry>
+    <entry>
+      <string>projetSMA.School</string>
+      <int>7</int>
+    </entry>
+    <entry>
+      <string>projetSMA.Child</string>
+      <int>2</int>
+    </entry>
+    <entry>
       <string>projetSMA.Office</string>
-      <int>4</int>
+      <int>5</int>
+    </entry>
+    <entry>
+      <string>projetSMA.Park</string>
+      <int>0</int>
     </entry>
     <entry>
       <string>projetSMA.Place</string>
-      <int>3</int>
+      <int>4</int>
     </entry>
   </layerOrder>
   <projections>
