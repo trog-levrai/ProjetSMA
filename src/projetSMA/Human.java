@@ -40,14 +40,16 @@ public class Human extends Agent {
 	public void step() {
 		if (isAtDestination) {
 			timeInDestination--;
-			if (timeInDestination == 0)
+			if (timeInDestination == 0) {
 				isAtDestination = false;
+				this.need_to_change_dist = true;
+			}
 			return;
 		}
 		NdPoint myPoint  = pos.getLocation(this);
 		NdPoint otherPoint = this.pos.getLocation(this.destination);
 		NdPoint finalPoint = this.pos.getLocation(this.final_destination);
-
+		
 		double angle;
 		if (!inside_bus) {
 			angle = SpatialMath.calcAngleFor2DMovement(pos, myPoint, otherPoint);
@@ -64,7 +66,7 @@ public class Human extends Agent {
 		grid.moveTo(this, (int)myPoint.getX(), (int)myPoint.getY());
 
 		if (!need_to_take_bus) {
-			if (this.pos.getDistance(myPoint, finalPoint) <= 1.0)
+			if (need_to_change_dist && this.pos.getDistance(myPoint, finalPoint) <= 1.0)
 				changeDist();
 			calc_best_course();
 		}
@@ -77,7 +79,7 @@ public class Human extends Agent {
 				if (this.pos.getDistance(myPoint, nearestBusPoint) <= 1.0)
 					inside_bus = true;
 			}
-			else if (!inside_bus && this.destination == this.final_destination && this.pos.getDistance(myPoint, finalPoint) <= 1.0) {
+			else if (need_to_change_dist && !inside_bus && this.destination == this.final_destination && this.pos.getDistance(myPoint, finalPoint) <= 1.0) {
 				curr_bus_course_index = 0;
 				need_to_take_bus = false;
 				changeDist();
@@ -183,6 +185,7 @@ public class Human extends Agent {
 		this.isInPlace = null;
 		this.destination = dist;
 		this.final_destination = dist;
+		this.need_to_change_dist = false;
 	}
 
 	private void checkDestination(NdPoint myPoint, NdPoint otherPoint) {
@@ -209,6 +212,7 @@ public class Human extends Agent {
 		return this.activity;
 	}
 
+	protected boolean need_to_change_dist;
 	protected Place final_destination;
 	protected boolean need_to_take_bus = false;
 	protected boolean inside_bus = false;
