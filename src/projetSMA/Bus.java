@@ -28,8 +28,12 @@ public class Bus extends Transport {
 			grid.moveTo(this, (int)myPoint.getX(), (int)myPoint.getY());
 		}
 		
-		if (this.pos.getDistance(myPoint, otherPoint) <= 1.0 && curr_stand_by++ == stand_by)
+		if (this.pos.getDistance(myPoint, otherPoint) <= 1.0 && curr_stand_by++ == stand_by) {
+			double dist = this.pos.getDistance(myPoint, otherPoint);
+			double angle = SpatialMath.calcAngleFor2DMovement(pos, myPoint, otherPoint);
+			pos.moveByVector(this, dist, angle, 0);
 			changeDist();
+		}
 	}
 
 	private void changeDist() {
