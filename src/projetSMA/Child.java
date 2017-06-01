@@ -16,11 +16,12 @@ public class Child extends Human {
 		this.isInPlace = house;
 		this.job = job;
 		this.house = house;
-		this.destination = house;
-		this.final_destination = house;
 		this.isAtDestination = false;
 		this.timeInDestination = 0;
+		this.isWaiting = true;
 		this.destination = timeLine.getDestination(this);
+		this.isInPlace = house;
+		this.isFollowing = false;
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -30,16 +31,28 @@ public class Child extends Human {
 	
 	@Override
 	public void step() {
-		//if (isAtDestination) {
-		//	timeInDestination--;
-		//	if (timeInDestination == 0)
-		//		isAtDestination = false;
-		//	return;
-		//}
 		NdPoint myPoint  = pos.getLocation(this);
 		NdPoint parentPoint = pos.getLocation(parent);
-		NdPoint otherPoint = pos.getLocation(this.destination);
-		//checkDestination(myPoint, otherPoint);
+		NdPoint destinationPoint = pos.getLocation(this.destination);
+		
+		if (this.pos.getDistance(myPoint, destinationPoint) <= 1.0) {
+			isInPlace = destination;
+			destination = timeLine.getDestination(this);
+			if (isInPlace != destination)
+				isWaiting = true;
+			else
+				isWaiting = false;
+			isFollowing = false;
+			return;
+		}
+		
+		if (isWaiting && (this.pos.getDistance(myPoint, parentPoint) <= 1.0) && !(parent.destination instanceof Office)) {
+			isWaiting = false;
+			isFollowing = true;
+		}
+		
+		if (isFollowing)
+			followParent();
 	}
 	
 	private void followParent() {
@@ -49,15 +62,6 @@ public class Child extends Human {
 		double angle = SpatialMath.calcAngleFor2DMovement(pos, myPoint, parentPoint);
 		pos.moveByVector(this, dist, angle, 0);
 	}
-	//private void checkDestination(NdPoint myPoint, NdPoint otherPoint) {
-	//	if (!(this.pos.getDistance(myPoint, otherPoint) <= 1.0))
-	//		return;
-	//	this.isAtDestination = true;
-	//	this.timeInDestination = destination.time;
-	//	double dist = this.pos.getDistance(myPoint, otherPoint);
-	//	double angle = SpatialMath.calcAngleFor2DMovement(pos, myPoint, otherPoint);
-	//	pos.moveByVector(this, dist, angle, 0);
-	//}
 
 	private Adult parent;
 	protected Place isInPlace;

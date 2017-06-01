@@ -28,12 +28,9 @@ public class Human extends Agent {
 		this.bus_list = bus_list;
 		this.best_course = new ArrayList<Place>();
 		this.nearest_station = job;
-		this.time = 0;
-		this.day = 0;
 		this.timeLine = timeLine;
 		this.activity = "Starting";
 		this.destination = timeLine.getDestination(this);
-		
 	}
 
 	@Override
@@ -232,8 +229,6 @@ public class Human extends Agent {
 	protected int timeInDestination;
 	protected List<ArrayList<Place>> stations_list;
 	protected List<Bus> bus_list;
-	protected int time;
-	protected int day;
 	protected TimeLine timeLine;
 	protected String activity;
 	protected Place isInPlace;

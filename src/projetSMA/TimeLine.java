@@ -27,6 +27,10 @@ public class TimeLine extends Agent{
 	Place getDestination(Agent agent) {
 		if (agent instanceof Adult) {
 			Adult adult = (Adult) agent;
+			if (adult.getChild().isWaiting)
+				return adult.getChild().isInPlace;
+			if (adult.getChild().isFollowing)
+				return adult.getChild().destination;
 			if (time < ticPerDay / 2)
 				return adult.job;
 			return adult.house;
