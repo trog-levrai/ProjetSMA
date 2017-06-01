@@ -13,7 +13,7 @@ public class Adult extends Human {
 		// TODO Auto-generated constructor stub
 	}
 	
-	private void setChild(Child child) {
+	public void setChild(Child child) {
 		this.child = child;
 	}
 

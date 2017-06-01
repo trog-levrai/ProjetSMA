@@ -14,6 +14,13 @@ public class Child extends Human {
 		super(pos, grid, job, house, station_list, buses, timeLine);
 		this.parent = parent;
 		this.isInPlace = house;
+		this.job = job;
+		this.house = house;
+		this.destination = house;
+		this.final_destination = house;
+		this.isAtDestination = false;
+		this.timeInDestination = 0;
+		this.destination = timeLine.getDestination(this);
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -23,26 +30,34 @@ public class Child extends Human {
 	
 	@Override
 	public void step() {
-		if (isAtDestination) {
-			timeInDestination--;
-			if (timeInDestination == 0)
-				isAtDestination = false;
-			return;
-		}
+		//if (isAtDestination) {
+		//	timeInDestination--;
+		//	if (timeInDestination == 0)
+		//		isAtDestination = false;
+		//	return;
+		//}
 		NdPoint myPoint  = pos.getLocation(this);
-		NdPoint otherPoint = this.pos.getLocation(this.destination);
-		checkDestination(myPoint, otherPoint);
+		NdPoint parentPoint = pos.getLocation(parent);
+		NdPoint otherPoint = pos.getLocation(this.destination);
+		//checkDestination(myPoint, otherPoint);
 	}
 	
-	private void checkDestination(NdPoint myPoint, NdPoint otherPoint) {
-		if (!(this.pos.getDistance(myPoint, otherPoint) <= 1.0))
-			return;
-		this.isAtDestination = true;
-		this.timeInDestination = destination.time;
-		double dist = this.pos.getDistance(myPoint, otherPoint);
-		double angle = SpatialMath.calcAngleFor2DMovement(pos, myPoint, otherPoint);
+	private void followParent() {
+		NdPoint myPoint  = pos.getLocation(this);
+		NdPoint parentPoint = pos.getLocation(parent);
+		double dist = this.pos.getDistance(myPoint, parentPoint);
+		double angle = SpatialMath.calcAngleFor2DMovement(pos, myPoint, parentPoint);
 		pos.moveByVector(this, dist, angle, 0);
 	}
+	//private void checkDestination(NdPoint myPoint, NdPoint otherPoint) {
+	//	if (!(this.pos.getDistance(myPoint, otherPoint) <= 1.0))
+	//		return;
+	//	this.isAtDestination = true;
+	//	this.timeInDestination = destination.time;
+	//	double dist = this.pos.getDistance(myPoint, otherPoint);
+	//	double angle = SpatialMath.calcAngleFor2DMovement(pos, myPoint, otherPoint);
+	//	pos.moveByVector(this, dist, angle, 0);
+	//}
 
 	private Adult parent;
 	protected Place isInPlace;
