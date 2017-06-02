@@ -26,7 +26,12 @@ public class TimeLine extends Agent{
 		if (time > ticPerDay) {
 			time = 0;
 			day++;
-			
+			for (Adult a : adults) {
+				Random rand = new Random();
+				if (rand.nextFloat() * 100 <= a.deathChance)
+					a.die();
+			}
+	
 		}
 		if (day > 7)
 			day = 1;
@@ -62,8 +67,14 @@ public class TimeLine extends Agent{
 			return child.house;
 		}
 	}
+	
+	public void setAdultsList(List<Adult> adults) {
+		this.adults = adults;
+	}
+	
 	protected int time;
 	protected int day;
 	protected int ticPerDay;
 	protected List<Park> parks;
+	protected List<Adult> adults;
 }

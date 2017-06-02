@@ -132,7 +132,7 @@ public class ContextCreator implements ContextBuilder<Object> {
 		
 		Random rand = new Random();
 		for(int i = 0; i < this.house; i++) {
-			Adult adult = new Adult(space, grid, o.get(rand.nextInt(o.size())), h.get(i), stations_per_lines, buses, timeLine);
+			Adult adult = new Adult(space, grid, context, o.get(rand.nextInt(o.size())), h.get(i), stations_per_lines, buses, timeLine, 0.5f);
 			Child child = new Child(space, grid, s.get(rand.nextInt(s.size())), adult, h.get(i), stations_per_lines, buses, timeLine);
 			adult.setChild(child);
 			context.add(adult);
@@ -140,6 +140,8 @@ public class ContextCreator implements ContextBuilder<Object> {
 			a.add(adult);
 			c.add(child);
 		}
+		
+		timeLine.setAdultsList(a);
 		
 		try {
 			Stream<String> stream = Files.lines(Paths.get(path));
