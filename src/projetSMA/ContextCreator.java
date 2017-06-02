@@ -135,6 +135,7 @@ public class ContextCreator implements ContextBuilder<Object> {
 			Adult adult = new Adult(space, grid, o.get(rand.nextInt(o.size())), h.get(i), stations_per_lines, buses, timeLine);
 			Child child = new Child(space, grid, s.get(rand.nextInt(s.size())), adult, h.get(i), stations_per_lines, buses, timeLine);
 			adult.setChild(child);
+			adult.setJob(new Officer());
 			context.add(adult);
 			context.add(child);
 			a.add(adult);

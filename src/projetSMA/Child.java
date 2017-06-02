@@ -10,11 +10,11 @@ import repast.simphony.space.grid.Grid;
 
 public class Child extends Human {
 
-	public Child(ContinuousSpace<Object> pos, Grid<Object> grid, Place job, Adult parent, House house, List<ArrayList<Place>> station_list, List<Bus> buses, TimeLine timeLine) {
-		super(pos, grid, job, house, station_list, buses, timeLine);
+	public Child(ContinuousSpace<Object> pos, Grid<Object> grid, Place job_place, Adult parent, House house, List<ArrayList<Place>> station_list, List<Bus> buses, TimeLine timeLine) {
+		super(pos, grid, job_place, house, station_list, buses, timeLine);
 		this.parent = parent;
 		this.isInPlace = house;
-		this.job = job;
+		this.job_place = job_place;
 		this.house = house;
 		this.isAtDestination = false;
 		this.timeInDestination = 0;

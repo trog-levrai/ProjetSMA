@@ -2,6 +2,7 @@ package projetSMA;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import bsh.Console;
 import repast.simphony.engine.watcher.Watch;
@@ -14,11 +15,11 @@ import repast.simphony.space.continuous.NdPoint;
 import repast.simphony.space.grid.Grid;
 import repast.simphony.space.grid.GridPoint;
 
-public class Human extends Agent {
+public abstract class Human extends Agent {
 	
-	public Human(ContinuousSpace<Object> pos, Grid<Object> grid, Place job, House house, List<ArrayList<Place>> stations_per_lines, List<Bus> bus_list, TimeLine timeLine) {
+	public Human(ContinuousSpace<Object> pos, Grid<Object> grid, Place job_place, House house, List<ArrayList<Place>> stations_per_lines, List<Bus> bus_list, TimeLine timeLine) {
 		super(pos, grid);
-		this.job = job;
+		this.job_place = job_place;
 		this.house = house;
 		this.destination = house;
 		this.final_destination = house;
@@ -27,72 +28,13 @@ public class Human extends Agent {
 		this.stations_list = stations_per_lines;
 		this.bus_list = bus_list;
 		this.best_course = new ArrayList<Place>();
-		this.nearest_station = job;
+		this.nearest_station = job_place;
 		this.timeLine = timeLine;
 	}
-
-	@Override
-	public void step() {
-		//if (isAtDestination) {
-		//	timeInDestination--;
-		//	if (timeInDestination == 0) {
-		//		isAtDestination = false;
-		//		this.need_to_change_dist = true;
-		//	}
-		//	return;
-		//}
-		NdPoint myPoint  = pos.getLocation(this);
-		NdPoint otherPoint = this.pos.getLocation(this.destination);
-		NdPoint finalPoint = this.pos.getLocation(this.final_destination);
-		
-		double angle;
-		if (!inside_bus) {
-			angle = SpatialMath.calcAngleFor2DMovement(pos, myPoint, otherPoint);
-			pos.moveByVector(this, 0.5, angle, 0);
-		}
-		else {
-			NdPoint busPoint = this.pos.getLocation(this.nearest_bus);
-			double dist = this.pos.getDistance(myPoint, busPoint);
-			angle = SpatialMath.calcAngleFor2DMovement(pos, myPoint, busPoint);
-			pos.moveByVector(this, dist, angle, 0);
-		}
-
-		myPoint = pos.getLocation(this);
-		grid.moveTo(this, (int)myPoint.getX(), (int)myPoint.getY());
-
-		if (!need_to_take_bus) {
-			if (this.pos.getDistance(myPoint, finalPoint) <= 1.0)
-				changeDist();
-			calc_best_course();
-		}
-		else {
-			NdPoint nearestStationPoint = this.pos.getLocation(this.nearest_station);
-			NdPoint arrivalStationPoint = this.pos.getLocation(this.arrival_station);
-
-			if (this.pos.getDistance(myPoint, nearestStationPoint) <= 1.0) {
-				NdPoint nearestBusPoint = this.pos.getLocation(this.nearest_bus);
-				if (this.pos.getDistance(myPoint, nearestBusPoint) <= 1.0)
-					inside_bus = true;
-			}
-			else if (!inside_bus && this.destination == this.final_destination && this.pos.getDistance(myPoint, finalPoint) <= 1.0) {
-				curr_bus_course_index = 0;
-				need_to_take_bus = false;
-				changeDist();
-			}
-			else if (inside_bus && this.pos.getDistance(myPoint, arrivalStationPoint) <= 2.0) {
-				inside_bus = false;
-				this.destination = this.final_destination;
-			}
-			else if (!inside_bus && this.pos.getDistance(myPoint, otherPoint) <= 1.0 && curr_bus_course_index < best_course.size()) {
-				this.destination = best_course.get(curr_bus_course_index++);
-			}
-		}
-
-		//checkDestination(myPoint, otherPoint);
-		moveToDestinationWhenCloseToIt(myPoint, otherPoint);
-	}
 	
-	private void calc_best_course() {
+	abstract public void step();
+	
+	protected void calc_best_course() {
 		best_course.clear();
 		need_to_take_bus = false;
 		NdPoint myPoint  = pos.getLocation(this);
@@ -175,7 +117,7 @@ public class Human extends Agent {
 		}
 	}
 	
-	private void changeDist() {
+	protected void changeDist() {
 		Place dist = timeLine.getDestination(this);
 		this.destination = dist;
 		this.final_destination = dist;
@@ -188,17 +130,8 @@ public class Human extends Agent {
 		this.timeInDestination = destination.time;
 	}
 	
-	public void moveToDestinationWhenCloseToIt(NdPoint myPoint, NdPoint otherPoint) {
-		if (!(this.pos.getDistance(myPoint, otherPoint) <= 1.0))
-			return;
-		double dist = this.pos.getDistance(myPoint, otherPoint);
-		double angle = SpatialMath.calcAngleFor2DMovement(pos, myPoint, otherPoint);
-		pos.moveByVector(this, dist, angle, 0);
-		
-	}
-	
-	public Place getJob() {
-		return job;
+	public Place getJobPlace() {
+		return job_place;
 	}
 	
 	public House getHouse() {
@@ -214,7 +147,7 @@ public class Human extends Agent {
 	protected Place nearest_station;
 	protected Place arrival_station;
 	protected Place destination;
-	protected Place job;
+	protected Place job_place;
 	protected House house;
 	protected boolean isAtDestination;
 	protected int timeInDestination;
