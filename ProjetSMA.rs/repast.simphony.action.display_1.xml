@@ -79,7 +79,7 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>-1889155748</hashCode>
+    <hashCode>1677287117</hashCode>
   </schedParams>
   <layoutClassName>foo.bar.baz</layoutClassName>
   <layoutProjection>space</layoutProjection>
@@ -87,7 +87,7 @@
   <layerOrder>
     <entry>
       <string>projetSMA.Bus</string>
-      <int>1</int>
+      <int>4</int>
     </entry>
     <entry>
       <string>projetSMA.Adult</string>
@@ -111,11 +111,11 @@
     </entry>
     <entry>
       <string>projetSMA.Park</string>
-      <int>0</int>
+      <int>1</int>
     </entry>
     <entry>
       <string>projetSMA.Place</string>
-      <int>4</int>
+      <int>0</int>
     </entry>
   </layerOrder>
   <projections>

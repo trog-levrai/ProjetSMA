@@ -84,8 +84,6 @@ public class ContextCreator implements ContextBuilder<Object> {
 				new RandomCartesianAdder<Object>(),
 				new repast.simphony.space.continuous.StrictBorders(), this.x, this.y);
 
-		TimeLine timeLine = new TimeLine(space, grid, 500);
-		context.add(timeLine);
 		List<ArrayList<Place>> stations_per_lines = new ArrayList<ArrayList<Place>>();
 		int nb_stations = this.bus;
 		int nb_lines = 1;
@@ -128,6 +126,9 @@ public class ContextCreator implements ContextBuilder<Object> {
 		s.forEach(sch -> context.add(sch));
 		h.forEach(hou -> context.add(hou));
 		p.forEach(par -> context.add(par));
+		
+		TimeLine timeLine = new TimeLine(space, grid, p, 500);
+		context.add(timeLine);
 		
 		Random rand = new Random();
 		for(int i = 0; i < this.house; i++) {
