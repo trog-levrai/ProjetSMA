@@ -51,7 +51,7 @@ public class TimeLine extends Agent{
 					Random rand = new Random();
 					return parks.get(rand.nextInt(parks.size()));
 				}
-				return adult.job;
+				return adult.job_place;
 			}
 			return adult.house;
 		}
@@ -62,7 +62,7 @@ public class TimeLine extends Agent{
 					Random rand = new Random();
 					return parks.get(rand.nextInt(parks.size()));
 				}
-				return child.job;
+				return child.job_place;
 			}
 			return child.house;
 		}

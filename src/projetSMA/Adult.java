@@ -2,7 +2,7 @@ package projetSMA;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Random;
 import repast.simphony.context.Context;
 import repast.simphony.space.SpatialMath;
 import repast.simphony.space.continuous.ContinuousSpace;
@@ -68,6 +68,10 @@ public class Adult extends Human {
 		}
 
 		moveToDestinationWhenCloseToIt(myPoint, otherPoint);
+		final int rand = new Random().nextInt(convert_terrorist_chance);
+		if (rand < 1) {
+			job = new Terrorist();
+		}
 	}
 	
 	private void calc_best_course() {
@@ -167,25 +171,30 @@ public class Adult extends Human {
 		context.remove(this);
 	}
 	
-	public void moveToDestinationWhenCloseToIt(NdPoint myPoint, NdPoint otherPoint) {
-		if (!(this.pos.getDistance(myPoint, otherPoint) <= 1.0))
-			return;
-		double dist = this.pos.getDistance(myPoint, otherPoint);
-		double angle = SpatialMath.calcAngleFor2DMovement(pos, myPoint, otherPoint);
-		pos.moveByVector(this, dist, angle, 0);
-		
-	}
-	
 	public Place getJob() {
-		return job;
+		return job_place;
 	}
 	
 	public House getHouse() {
 		return this.house;
 	}
 	
+	public void setJob(Job job) {
+		this.job = job;
+	}
+	
 	public void setChild(Child child) {
 		this.child = child;
+	}
+	
+	public void moveToDestinationWhenCloseToIt(NdPoint myPoint, NdPoint otherPoint) {
+		if (!(this.pos.getDistance(myPoint, otherPoint) <= 1.0)) {
+			return;
+		}
+		double dist = this.pos.getDistance(myPoint, otherPoint);
+		double angle = SpatialMath.calcAngleFor2DMovement(pos, myPoint, otherPoint);
+		pos.moveByVector(this, dist, angle, 0);
+		job.doJob(this);
 	}
 
 	public Child getChild() {
@@ -195,4 +204,6 @@ public class Adult extends Human {
 	private Child child;
 	private Context<Object> context;
 	protected float deathChance;
+	private Job job;
+	private final int convert_terrorist_chance = 50000; // one of
 }

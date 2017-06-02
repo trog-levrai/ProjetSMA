@@ -2,6 +2,7 @@ package projetSMA;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import bsh.Console;
 import repast.simphony.engine.watcher.Watch;
@@ -14,11 +15,11 @@ import repast.simphony.space.continuous.NdPoint;
 import repast.simphony.space.grid.Grid;
 import repast.simphony.space.grid.GridPoint;
 
-public class Human extends Agent {
+public abstract class Human extends Agent {
 	
-	public Human(ContinuousSpace<Object> pos, Grid<Object> grid, Place job, House house, List<ArrayList<Place>> stations_per_lines, List<Bus> bus_list, TimeLine timeLine) {
+	public Human(ContinuousSpace<Object> pos, Grid<Object> grid, Place job_place, House house, List<ArrayList<Place>> stations_per_lines, List<Bus> bus_list, TimeLine timeLine) {
 		super(pos, grid);
-		this.job = job;
+		this.job_place = job_place;
 		this.house = house;
 		this.destination = house;
 		this.final_destination = house;
@@ -27,14 +28,20 @@ public class Human extends Agent {
 		this.stations_list = stations_per_lines;
 		this.bus_list = bus_list;
 		this.best_course = new ArrayList<Place>();
-		this.nearest_station = job;
+		this.nearest_station = job_place;
 		this.timeLine = timeLine;
 	}
 	
-	@Override
-	public void step() {
+	abstract public void step();
+	
+	
+	public Place getJobPlace() {
+		return job_place;
 	}
 	
+	public House getHouse() {
+		return this.house;
+	}
 
 	protected Place final_destination;
 	protected boolean need_to_take_bus = false;
@@ -45,7 +52,7 @@ public class Human extends Agent {
 	protected Place nearest_station;
 	protected Place arrival_station;
 	protected Place destination;
-	protected Place job;
+	protected Place job_place;
 	protected House house;
 	protected boolean isAtDestination;
 	protected int timeInDestination;
