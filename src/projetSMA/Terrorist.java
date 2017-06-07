@@ -37,7 +37,7 @@ public class Terrorist implements Job {
 				adults.add(h);
 			}
 		}
-		NuclearExplosion nuke = new NuclearExplosion(adult.pos, adult.grid, context, 10000);
+		NuclearExplosion nuke = new NuclearExplosion(adult.pos, adult.grid, context, 350);
 		context.add(nuke);
 		NdPoint pt = adult.pos.getLocation(adult);
 		adult.pos.moveTo(nuke, pt.getX(), pt.getY());
