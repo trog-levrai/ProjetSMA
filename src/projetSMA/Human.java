@@ -30,7 +30,7 @@ public class Human extends Agent {
 		this.nearest_station = job;
 		this.timeLine = timeLine;
 		this.activity = "Starting";
-		this.destination = timeLine.getDestination(this);
+		this.destination = this.house;
 	}
 
 	@Override
