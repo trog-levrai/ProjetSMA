@@ -35,14 +35,6 @@ public class Human extends Agent {
 
 	@Override
 	public void step() {
-		//if (isAtDestination) {
-		//	timeInDestination--;
-		//	if (timeInDestination == 0) {
-		//		isAtDestination = false;
-		//		this.need_to_change_dist = true;
-		//	}
-		//	return;
-		//}
 		NdPoint myPoint  = pos.getLocation(this);
 		NdPoint otherPoint = this.pos.getLocation(this.destination);
 		NdPoint finalPoint = this.pos.getLocation(this.final_destination);
@@ -146,8 +138,6 @@ public class Human extends Agent {
 			NdPoint st_0 = this.pos.getLocation(st_place);
 			NdPoint st_1 = this.pos.getLocation(stations_list.get(nearest_line).get(st + 1));
 			bus_course_dists += this.pos.getDistance(st_0, st_1);
-
-			//best_course.add(st_place);
 		}
 
 		best_course.add(stations_list.get(nearest_line).get(st));

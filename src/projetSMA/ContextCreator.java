@@ -148,25 +148,25 @@ public class ContextCreator implements ContextBuilder<Object> {
 					switch (str.charAt(i)) {
 						case 'H':
 							this.house--;
-							space.moveTo(h.get(this.house), i, this.aux);
-							space.moveTo(a.get(this.house), i, this.aux);
-							space.moveTo(c.get(this.house), i, this.aux);
+							space.moveTo(h.get(this.house), i, this.y - this.aux);
+							space.moveTo(a.get(this.house), i, this.y - this.aux);
+							space.moveTo(c.get(this.house), i, this.y - this.aux);
 							break;
 						case 'O':
 							this.office--;
-							space.moveTo(o.get(this.office), i, this.aux);
+							space.moveTo(o.get(this.office), i, this.y - this.aux);
 							break;
 						case 'S':
 							this.school--;
-							space.moveTo(s.get(this.school), i, this.aux);
+							space.moveTo(s.get(this.school), i, this.y - this.aux);
 							break;
 						case 'B':
 							this.bus--;
-							space.moveTo(stations_per_lines.get(0).get(this.bus), i, this.aux);
+							space.moveTo(stations_per_lines.get(0).get(this.bus), i, this.y - this.aux);
 							break;
 						case 'P':
 							this.park--;
-							space.moveTo(p.get(this.park), i, this.aux);
+							space.moveTo(p.get(this.park), i, this.y - this.aux);
 							break;
 					}
 				}
