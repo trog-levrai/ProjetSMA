@@ -167,6 +167,7 @@ public class Adult extends Human {
 		destination = null;
 		final_destination = null;
 		context.remove(child);
+		new Graves(pos, grid, context, 0, 0, pos.getLocation(house));
 		context.remove(house);
 		context.remove(this);
 	}

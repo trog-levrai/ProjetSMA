@@ -40,8 +40,10 @@ public class Terrorist implements Job {
 				if (dist <= explosion_range) {
 					final House house = a.getHouse();
 					context.remove(a.getChild());
+					new Graves(adult.pos, adult.grid, context, 0, 0, adult.pos.getLocation(house));
 					context.remove(a);
 					context.remove(house);
+					context.remove(this);
 				}
 			}
 		}

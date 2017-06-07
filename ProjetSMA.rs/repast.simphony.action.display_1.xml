@@ -7,6 +7,10 @@
       <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
     <entry>
+      <string>projetSMA.Graves</string>
+      <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
+    </entry>
+    <entry>
       <string>projetSMA.Adult</string>
       <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
@@ -39,6 +43,10 @@
     <entry>
       <string>projetSMA.Bus</string>
       <string>projetSMA.Bus.style_7.xml</string>
+    </entry>
+    <entry>
+      <string>projetSMA.Graves</string>
+      <string>projetSMA.Graves.style_1.xml</string>
     </entry>
     <entry>
       <string>projetSMA.Adult</string>
@@ -79,7 +87,7 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>1677287117</hashCode>
+    <hashCode>1162651823</hashCode>
   </schedParams>
   <layoutClassName>foo.bar.baz</layoutClassName>
   <layoutProjection>space</layoutProjection>
@@ -88,6 +96,10 @@
     <entry>
       <string>projetSMA.Bus</string>
       <int>4</int>
+    </entry>
+    <entry>
+      <string>projetSMA.Graves</string>
+      <int>8</int>
     </entry>
     <entry>
       <string>projetSMA.Adult</string>

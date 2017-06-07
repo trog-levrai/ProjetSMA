@@ -1,6 +1,7 @@
 package projetSMA;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -26,12 +27,22 @@ public class TimeLine extends Agent{
 		if (time > ticPerDay) {
 			time = 0;
 			day++;
-			for (Adult a : adults) {
+			final Iterator<Object> it = pos.getObjects().iterator();
+			ArrayList<Adult> adultToKill = new ArrayList<Adult>();
+			while (it.hasNext()) {
+				final Object obj = it.next();
+				if (obj instanceof Adult) {
+					Random rand = new Random();
+					Adult adult = (Adult) obj;
+					if (rand.nextFloat() * 100 <= adult.deathChance)
+						adultToKill.add(adult);
+				}			
+			}
+			for (Adult a : adultToKill) {
 				Random rand = new Random();
 				if (rand.nextFloat() * 100 <= a.deathChance)
 					a.die();
 			}
-	
 		}
 		if (day > 7)
 			day = 1;
