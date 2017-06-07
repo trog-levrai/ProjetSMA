@@ -34,6 +34,7 @@ public class ContextCreator implements ContextBuilder<Object> {
 	
 	@Override
 	public Context<Object> build(Context<Object> context) {
+		this.context = context;
 		context.setId("ProjetSMA");
 		int nb = 100;
 		String path = "tests/test.sma";
@@ -77,12 +78,14 @@ public class ContextCreator implements ContextBuilder<Object> {
 		GridFactory gridFactory = GridFactoryFinder.createGridFactory(null);
 		GridBuilderParameters<Object> gbp = new GridBuilderParameters<Object>(new WrapAroundBorders(), new SimpleGridAdder<Object>(), false, this.x, this.y);
 		Grid<Object> grid = gridFactory.createGrid("grid", context, gbp);
+		this.grid = grid;
 		
 		ContinuousSpaceFactory spaceFactory = ContinuousSpaceFactoryFinder.createContinuousSpaceFactory(null);
 		
 		ContinuousSpace<Object> space = spaceFactory.createContinuousSpace("space", context,
 				new RandomCartesianAdder<Object>(),
 				new repast.simphony.space.continuous.StrictBorders(), this.x, this.y);
+		this.space = space;
 
 		List<ArrayList<Place>> stations_per_lines = new ArrayList<ArrayList<Place>>();
 		int nb_stations = this.bus;
@@ -95,6 +98,7 @@ public class ContextCreator implements ContextBuilder<Object> {
 				context.add(station);
 			}
 		}
+		this.stations_per_lines = stations_per_lines;
 
 		List<Bus> buses = new ArrayList<Bus>();
 		for (int i = 0; i < 2; i++) {
@@ -102,7 +106,8 @@ public class ContextCreator implements ContextBuilder<Object> {
 			buses.add(bus);
 			context.add(bus);
 		}
-
+		this.buses = buses;
+		
 		List<School> s = new ArrayList<School>();
 		List<Office> o = new ArrayList<Office>();
 		List<House> h = new ArrayList<House>();
@@ -112,16 +117,17 @@ public class ContextCreator implements ContextBuilder<Object> {
 		
 		for (int i = 0; i < this.school; ++i)
 			s.add(new School(space, grid, 1000, 150));
+		this.s = s;
 		
 		for (int i = 0; i < this.office; ++i)
 			o.add(new Office(space, grid, 1000, 150));
+		this.o = o;
 		
 		for (int i = 0; i < this.house; ++i)
 			h.add(new House(space, grid, 1, 150));
 		
 		for (int i = 0; i < this.park; ++i)
 			p.add(new Park(space, grid, 1, 150));
-
 		o.forEach(off -> context.add(off));
 		s.forEach(sch -> context.add(sch));
 		h.forEach(hou -> context.add(hou));
@@ -129,10 +135,11 @@ public class ContextCreator implements ContextBuilder<Object> {
 		
 		TimeLine timeLine = new TimeLine(space, grid, p, 500);
 		context.add(timeLine);
+		this.timeLine = timeLine;
 		
 		Random rand = new Random();
 		for(int i = 0; i < this.house; i++) {
-			Adult adult = new Adult(space, grid, context, o.get(rand.nextInt(o.size())), h.get(i), stations_per_lines, buses, timeLine, 0.5f);
+			Adult adult = new Adult(space, grid, context, o.get(rand.nextInt(o.size())), h.get(i), stations_per_lines, buses, timeLine, 0.5f, this);
 			Child child = new Child(space, grid, s.get(rand.nextInt(s.size())), adult, h.get(i), stations_per_lines, buses, timeLine);
 			adult.setChild(child);
 			adult.setJob(new Officer());
@@ -185,6 +192,20 @@ public class ContextCreator implements ContextBuilder<Object> {
 		
 		return context;
 	}
+	
+	public void addFamily(House house) {
+		Random rand = new Random();
+		Adult adult = new Adult(space, grid, context, o.get(rand.nextInt(o.size())), house, stations_per_lines, buses, timeLine, 0.5f, this);
+		Child child = new Child(space, grid, s.get(rand.nextInt(s.size())), adult, house, stations_per_lines, buses, timeLine);
+		adult.setChild(child);
+		adult.setJob(new Officer());
+		context.add(adult);
+		context.add(child);
+		NdPoint pt = space.getLocation(house);
+		space.moveTo(adult, pt.getX(), pt.getY());
+		space.moveTo(child, pt.getX(), pt.getY());
+	}
+	
 	public int x = 0;
 	public int y = 0;
 	public int house = 0;
@@ -193,4 +214,12 @@ public class ContextCreator implements ContextBuilder<Object> {
 	public int park = 0;
 	public int bus = 0;
 	public int aux = 0;
+	public List<School> s;
+	public List<Office> o;
+	public List<ArrayList<Place>> stations_per_lines;
+	public List<Bus> buses;
+	public TimeLine timeLine;
+	public ContinuousSpace<Object> space;
+	public Grid<Object> grid;
+	Context<Object> context;
 }

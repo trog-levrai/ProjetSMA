@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import repast.simphony.context.Context;
+import repast.simphony.dataLoader.ContextBuilder;
 import repast.simphony.space.SpatialMath;
 import repast.simphony.space.continuous.ContinuousSpace;
 import repast.simphony.space.continuous.NdPoint;
@@ -11,10 +12,11 @@ import repast.simphony.space.grid.Grid;
 
 public class Adult extends Human {
 
-	public Adult(ContinuousSpace<Object> pos, Grid<Object> grid, Context<Object> context, Place job, House house, List<ArrayList<Place>> station_list, List<Bus> buses, TimeLine timeLine, float deathChance) {
+	public Adult(ContinuousSpace<Object> pos, Grid<Object> grid, Context<Object> context, Place job, House house, List<ArrayList<Place>> station_list, List<Bus> buses, TimeLine timeLine, float deathChance, ContextCreator cb) {
 		super(pos, grid, job, house, station_list, buses, timeLine);
 		this.context = context;
 		this.deathChance = deathChance;
+		this.cb = cb;
 	}
 	
 	@Override
@@ -70,7 +72,7 @@ public class Adult extends Human {
 		moveToDestinationWhenCloseToIt(myPoint, otherPoint);
 		final int rand = new Random().nextInt(convert_terrorist_chance);
 		if (rand < 1) {
-			job = new Terrorist();
+			job = new Terrorist(cb);
 		}
 	}
 	
@@ -167,7 +169,7 @@ public class Adult extends Human {
 		destination = null;
 		final_destination = null;
 		context.remove(child);
-		new Graves(pos, grid, context, 0, 0, pos.getLocation(house));
+		new Graves(pos, grid, context, 0, 0, pos.getLocation(house), 28 * 500, cb);
 		context.remove(house);
 		context.remove(this);
 	}
@@ -195,7 +197,7 @@ public class Adult extends Human {
 		double dist = this.pos.getDistance(myPoint, otherPoint);
 		double angle = SpatialMath.calcAngleFor2DMovement(pos, myPoint, otherPoint);
 		pos.moveByVector(this, dist, angle, 0);
-		job.doJob(this);
+		job.doJob(this, cb);
 	}
 
 	public Child getChild() {
@@ -207,4 +209,5 @@ public class Adult extends Human {
 	protected float deathChance;
 	private Job job;
 	private final int convert_terrorist_chance = 50000; // one of
+	private ContextCreator cb;
 }
