@@ -35,9 +35,14 @@ public class Terrorist implements Job {
 			if (obj instanceof Adult) {
 				final Adult h = (Adult) obj;
 				adults.add(h);
-			}			
+			}
 		}
-	
+		NuclearExplosion nuke = new NuclearExplosion(adult.pos, adult.grid, context, 10000);
+		context.add(nuke);
+		NdPoint pt = adult.pos.getLocation(adult);
+		adult.pos.moveTo(nuke, pt.getX(), pt.getY());
+		
+		
 		for (final Adult a : adults) {
 			final NdPoint otherPoint = position.getLocation(a);
 			if (otherPoint != null) {
@@ -46,8 +51,8 @@ public class Terrorist implements Job {
 					final House house = a.getHouse();
 					context.remove(a.getChild());
 					new Graves(adult.pos, adult.grid, context, 0, 0, adult.pos.getLocation(house), 28 * 500, cb);
-					context.remove(a);
 					context.remove(house);
+					context.remove(a);
 					context.remove(this);
 				}
 			}

@@ -15,6 +15,10 @@
       <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
     <entry>
+      <string>projetSMA.NuclearExplosion</string>
+      <string>repast.simphony.visualizationOGL2D.DefaultStyleOGL2D</string>
+    </entry>
+    <entry>
       <string>projetSMA.House</string>
       <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
@@ -53,6 +57,10 @@
       <string>projetSMA.Adult.style_0.xml</string>
     </entry>
     <entry>
+      <string>projetSMA.NuclearExplosion</string>
+      <null/>
+    </entry>
+    <entry>
       <string>projetSMA.House</string>
       <string>projetSMA.House.style_9.xml</string>
     </entry>
@@ -87,7 +95,7 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>1162651823</hashCode>
+    <hashCode>-1382234824</hashCode>
   </schedParams>
   <layoutClassName>foo.bar.baz</layoutClassName>
   <layoutProjection>space</layoutProjection>
@@ -104,6 +112,10 @@
     <entry>
       <string>projetSMA.Adult</string>
       <int>3</int>
+    </entry>
+    <entry>
+      <string>projetSMA.NuclearExplosion</string>
+      <int>9</int>
     </entry>
     <entry>
       <string>projetSMA.House</string>
