@@ -2,6 +2,7 @@ package projetSMA;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import repast.simphony.space.SpatialMath;
 import repast.simphony.space.continuous.ContinuousSpace;
@@ -61,6 +62,17 @@ public class Child extends Human {
 		double dist = this.pos.getDistance(myPoint, parentPoint);
 		double angle = SpatialMath.calcAngleFor2DMovement(pos, myPoint, parentPoint);
 		pos.moveByVector(this, dist, angle, 0);
+	}
+	
+	public Place getDestination(int time, int day, int ticPerDay, List<Park> parks) {
+		if (time < ticPerDay / 2) {
+			if (day > 5) {
+				Random rand = new Random();
+				return parks.get(rand.nextInt(parks.size()));
+			}
+			return this.job;
+		}
+		return this.house;
 	}
 
 	private Adult parent;

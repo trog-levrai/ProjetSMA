@@ -14,7 +14,7 @@ import repast.simphony.space.continuous.NdPoint;
 import repast.simphony.space.grid.Grid;
 import repast.simphony.space.grid.GridPoint;
 
-public class Human extends Agent {
+public abstract class Human extends Agent {
 	
 	public Human(ContinuousSpace<Object> pos, Grid<Object> grid, Place job, House house, List<ArrayList<Place>> stations_per_lines, List<Bus> bus_list, TimeLine timeLine) {
 		super(pos, grid);
@@ -190,6 +190,8 @@ public class Human extends Agent {
 		pos.moveByVector(this, dist, angle, 0);
 		
 	}
+	
+	public abstract Place getDestination(int time, int day, int ticPerDay, List<Park> parks);
 	
 	public Place getJob() {
 		return job;

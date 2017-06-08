@@ -34,33 +34,8 @@ public class TimeLine extends Agent{
 	
 	//public Object getDestination() {}
 	
-	Place getDestination(Agent agent) {
-		if (agent instanceof Adult) {
-			Adult adult = (Adult) agent;
-			if (adult.getChild().isWaiting)
-				return adult.getChild().isInPlace;
-			if (adult.getChild().isFollowing)
-				return adult.getChild().destination;
-			if (time < ticPerDay / 2) {
-				if (day > 5) {
-					Random rand = new Random();
-					return parks.get(rand.nextInt(parks.size()));
-				}
-				return adult.job;
-			}
-			return adult.house;
-		}
-		else {
-			Child child = (Child) agent;
-			if (time < ticPerDay / 2) {
-				if (day > 5) {
-					Random rand = new Random();
-					return parks.get(rand.nextInt(parks.size()));
-				}
-				return child.job;
-			}
-			return child.house;
-		}
+	Place getDestination(Human agent) {
+		return agent.getDestination(this.time, this.day, this.ticPerDay, this.parks);
 	}
 	protected int time;
 	protected int day;
