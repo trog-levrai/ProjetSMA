@@ -151,6 +151,7 @@ public class ContextCreator implements ContextBuilder<Object> {
 		
 		timeLine.setAdultsList(a);
 		
+		
 		try {
 			Stream<String> stream = Files.lines(Paths.get(path));
 			stream.forEach(str -> {
@@ -177,6 +178,11 @@ public class ContextCreator implements ContextBuilder<Object> {
 						case 'P':
 							this.park--;
 							space.moveTo(p.get(this.park), i, this.aux);
+							break;
+						case ' ':
+							Background b = new Background(space, grid);
+							context.add(b);
+							space.moveTo(b, i, this.aux);
 							break;
 					}
 				}

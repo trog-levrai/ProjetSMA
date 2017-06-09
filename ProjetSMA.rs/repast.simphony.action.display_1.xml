@@ -35,6 +35,10 @@
       <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
     <entry>
+      <string>projetSMA.Background</string>
+      <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
+    </entry>
+    <entry>
       <string>projetSMA.Park</string>
       <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
@@ -77,6 +81,10 @@
       <string>projetSMA.Office.style_3.xml</string>
     </entry>
     <entry>
+      <string>projetSMA.Background</string>
+      <string>projetSMA.Background.style_0.xml</string>
+    </entry>
+    <entry>
       <string>projetSMA.Park</string>
       <string>projetSMA.Park.style_1.xml</string>
     </entry>
@@ -95,7 +103,7 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>527744767</hashCode>
+    <hashCode>1609324519</hashCode>
   </schedParams>
   <layoutClassName>foo.bar.baz</layoutClassName>
   <layoutProjection>space</layoutProjection>
@@ -103,43 +111,47 @@
   <layerOrder>
     <entry>
       <string>projetSMA.Bus</string>
-      <int>4</int>
-    </entry>
-    <entry>
-      <string>projetSMA.Graves</string>
-      <int>8</int>
-    </entry>
-    <entry>
-      <string>projetSMA.Adult</string>
-      <int>3</int>
-    </entry>
-    <entry>
-      <string>projetSMA.NuclearExplosion</string>
-      <int>9</int>
-    </entry>
-    <entry>
-      <string>projetSMA.House</string>
-      <int>6</int>
-    </entry>
-    <entry>
-      <string>projetSMA.School</string>
-      <int>7</int>
-    </entry>
-    <entry>
-      <string>projetSMA.Child</string>
-      <int>2</int>
-    </entry>
-    <entry>
-      <string>projetSMA.Office</string>
       <int>5</int>
     </entry>
     <entry>
+      <string>projetSMA.Graves</string>
+      <int>9</int>
+    </entry>
+    <entry>
+      <string>projetSMA.Adult</string>
+      <int>4</int>
+    </entry>
+    <entry>
+      <string>projetSMA.NuclearExplosion</string>
+      <int>10</int>
+    </entry>
+    <entry>
+      <string>projetSMA.House</string>
+      <int>7</int>
+    </entry>
+    <entry>
+      <string>projetSMA.School</string>
+      <int>8</int>
+    </entry>
+    <entry>
+      <string>projetSMA.Child</string>
+      <int>3</int>
+    </entry>
+    <entry>
+      <string>projetSMA.Office</string>
+      <int>6</int>
+    </entry>
+    <entry>
+      <string>projetSMA.Background</string>
+      <int>0</int>
+    </entry>
+    <entry>
       <string>projetSMA.Park</string>
-      <int>1</int>
+      <int>2</int>
     </entry>
     <entry>
       <string>projetSMA.Place</string>
-      <int>0</int>
+      <int>1</int>
     </entry>
   </layerOrder>
   <projections>
