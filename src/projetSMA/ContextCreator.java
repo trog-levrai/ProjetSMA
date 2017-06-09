@@ -37,7 +37,7 @@ public class ContextCreator implements ContextBuilder<Object> {
 		this.context = context;
 		context.setId("ProjetSMA");
 		int nb = 100;
-		String path = "tests/test.sma";
+		String path = "tests/map2.sma";
 
 		try {
 			Stream<String> stream = Files.lines(Paths.get(path));
