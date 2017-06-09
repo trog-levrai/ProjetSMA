@@ -34,7 +34,7 @@ public class ContextCreator implements ContextBuilder<Object> {
 	
 	@Override
 	public Context<Object> build(Context<Object> context) {
-		context.setId("ProjetSMA");
+		context.setId("District simulation");
 		int nb = 100;
 		String path = "tests/big.map";
 
